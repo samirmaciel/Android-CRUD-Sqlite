@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Cadastrar"
+        android:id="@+id/menuCadastrar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_add_circle_outline_24"/>
+    <item android:title="Excluir"
+        android:id="@+id/menuDeletar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_delete_24"/>
+    <item android:title="Atualizar"
+        android:id="@+id/menuAtualzar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_update_24"/>
+    <item android:title="Listar"
+        android:id="@+id/menuListar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_format_list_bulleted_24"/>
+</menu>
