@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater i = getMenuInflater();
         i.inflate(R.menu.menu_principal, menu);
 
+        MenuItem lista = (MenuItem) menu.findItem(R.id.menuListar);
+        lista.setEnabled(false);
+
         MenuItem cadastrar = (MenuItem) menu.findItem(R.id.menuCadastrar);
         cadastrar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
