@@ -7,13 +7,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class CadastroActivity extends AppCompatActivity {
+
+    private Button btnSalvar;
+    private EditText inputNome, inputEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
+
+        btnSalvar = findViewById(R.id.btnSalvar);
+        inputEmail = findViewById(R.id.inputEmail);
+        inputNome = findViewById(R.id.inputNome);
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UsuarioDAO dao = new UsuarioDAO(getApplicationContext());
+                Usuario usuario = new Usuario(inputNome.getText().toString(), inputEmail.getText().toString());
+                dao.inserirUsuario(usuario);
+                Toast.makeText(getApplicationContext(), "Usuario " + usuario.getNome() + " salvo com sucesso!", Toast.LENGTH_SHORT).show();
+                limparCampos();
+            }
+        });
     }
 
 
@@ -35,5 +57,10 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
         return true;
+    }
+
+    private void limparCampos(){
+        inputNome.setText("");
+        inputEmail.setText("");
     }
 }
