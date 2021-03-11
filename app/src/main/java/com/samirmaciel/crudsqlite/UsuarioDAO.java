@@ -52,4 +52,13 @@ public class UsuarioDAO {
 
         return null;
     }
+
+    public void atualizarUsuario(Usuario usuario){
+        ContentValues values = new ContentValues();
+        values.put("id", usuario.getId());
+        values.put("nome", usuario.getNome());
+        values.put("email", usuario.getEmail());
+
+        int num = banco.update("usuarios", values, "id == ?", new String[]{String.valueOf(usuario.getId())});
+    }
 }

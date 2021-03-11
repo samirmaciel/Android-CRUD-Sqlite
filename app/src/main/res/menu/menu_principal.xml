@@ -6,14 +6,6 @@
         android:id="@+id/menuCadastrar"
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_add_circle_outline_24"/>
-    <item android:title="Excluir"
-        android:id="@+id/menuDeletar"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_delete_24"/>
-    <item android:title="Atualizar"
-        android:id="@+id/menuAtualzar"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_update_24"/>
     <item android:title="Listar"
         android:id="@+id/menuListar"
         app:showAsAction="always"

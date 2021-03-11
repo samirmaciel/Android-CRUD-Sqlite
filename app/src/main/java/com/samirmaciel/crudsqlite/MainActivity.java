@@ -66,6 +66,18 @@ public class MainActivity extends AppCompatActivity {
         i.inflate(R.menu.menu_contexto, menu);
 
         MenuItem excluir = (MenuItem) menu.findItem(R.id.contextoExcluir);
+        MenuItem atualizar = (MenuItem) menu.findItem(R.id.contextoAtualizar);
+
+        atualizar.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item){
+                AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+                Intent intent = new Intent(MainActivity.this, AtualizarActivity.class );
+                intent.putExtra("usuarioID", lista.get(menuInfo.position).getId());
+                startActivity(intent);
+                return false;
+            }
+        });
 
         excluir.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
