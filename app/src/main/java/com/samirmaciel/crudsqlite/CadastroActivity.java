@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.samirmaciel.crudsqlite.view.MainActivity;
+
 public class CadastroActivity extends AppCompatActivity {
 
     private Button btnSalvar;

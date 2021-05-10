@@ -12,6 +12,7 @@ public class Conexao extends SQLiteOpenHelper {
     private final static int version = 1;
 
     public Conexao(Context contexto) {
+
         super(contexto, name, null, version);
     }
 
