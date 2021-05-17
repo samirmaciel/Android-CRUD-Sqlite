@@ -1,4 +1,4 @@
-package com.samirmaciel.crudsqlite;
+package com.samirmaciel.crudsqlite.dao;
 
 import android.content.Context;
 import android.database.DatabaseErrorHandler;

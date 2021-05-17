@@ -1,4 +1,4 @@
-package com.samirmaciel.crudsqlite;
+package com.samirmaciel.crudsqlite.model;
 
 import androidx.annotation.NonNull;
 

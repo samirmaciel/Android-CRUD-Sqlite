@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.samirmaciel.crudsqlite.dao.UsuarioDAO;
+import com.samirmaciel.crudsqlite.model.Usuario;
+
 public class AtualizarActivity extends AppCompatActivity {
     private EditText inputNome, inputEmail;
     private Button btnAtualizar;
