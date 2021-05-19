@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 
 public class Conexao extends SQLiteOpenHelper {
     private final static String name = "banco.db";
-    private final static int version = 2;
+    private final static int version = 3;
 
     public Conexao(Context contexto) {
 
@@ -18,13 +18,13 @@ public class Conexao extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql_usuarios = "CREATE TABLE contatos (id integer primary key autoincrement, nome string, numero string);";
-        db.execSQL(sql_usuarios);
+        String sql_contatos = "create table contatos (id integer primary key autoincrement, nome string, numero string);";
+        db.execSQL(sql_contatos);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS usuarios;";
-        db.execSQL(sql);
+        db.execSQL("drop table if exists usuarios;");
+        onCreate(db);
     }
 }

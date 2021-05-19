@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if(savedInstanceState != null){
-            getSupportFragmentManager()
+            getFragmentManager()
                     .beginTransaction()
                     .add(R.id.container_main,new HomeFragment())
                     .commit();

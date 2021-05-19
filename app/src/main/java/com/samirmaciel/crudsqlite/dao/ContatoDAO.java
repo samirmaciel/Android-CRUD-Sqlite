@@ -18,12 +18,12 @@ public class ContatoDAO {
         banco = conexao.getWritableDatabase();
     }
 
-    public void inserirContato(Contato contato){
+    public long inserirContato(Contato contato){
         ContentValues values = new ContentValues();
         values.put("nome", contato.getNome());
         values.put("numero", contato.getNumero());
 
-        long num = banco.insert("contatos", null, values);
+        return banco.insert("contatos", null, values);
     }
 
     public void excluirContato(Contato contato){
