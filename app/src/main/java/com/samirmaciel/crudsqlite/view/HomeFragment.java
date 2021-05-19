@@ -2,7 +2,7 @@ package com.samirmaciel.crudsqlite.view;
 
 import android.os.Bundle;
 
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,9 +39,11 @@ public class HomeFragment extends Fragment {
 
         contatos = contatodao.obterTodos();
 
-        AdapterContatosRecycler adapter = new AdapterContatosRecycler(getContext(), contatos);
+        System.out.println(contatos);
+
+        AdapterContatosRecycler adapter = new AdapterContatosRecycler(getActivity().getApplicationContext(), contatos);
         recycler.setAdapter(adapter);
-        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycler.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
 
 
