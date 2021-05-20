@@ -1,5 +1,6 @@
 package com.samirmaciel.crudsqlite.view;
 
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.samirmaciel.crudsqlite.R;
@@ -55,12 +59,40 @@ public class HomeFragment extends Fragment {
 
         System.out.println(contatos);
 
-        AdapterContatosRecycler adapter = new AdapterContatosRecycler(getActivity().getApplicationContext(), contatos);
+        AdapterContatosRecycler adapter = new AdapterContatosRecycler(this, getActivity().getApplicationContext(), contatos);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
 
 
         return view;
+    }
+
+
+    public void showEditView(Contato contato){
+
+        Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        View view = inflater.inflate(R.layout.edit_view, null);
+
+        EditText inputNome = (EditText) view.findViewById(R.id.inputNameEdit);
+        EditText inputTelefone = (EditText) view.findViewById(R.id.inputNumberEdit);
+        Button btnSalvar = (Button) view.findViewById(R.id.btnSaveEdit);
+        Button btnFechar = (Button) view.findViewById(R.id.btnFecharEdit);
+
+        inputNome.setText(contato.getNome());
+        inputTelefone.setText(contato.getNumero());
+
+        btnFechar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+
+        dialog.setContentView(view);
+        dialog.show();
     }
 }
