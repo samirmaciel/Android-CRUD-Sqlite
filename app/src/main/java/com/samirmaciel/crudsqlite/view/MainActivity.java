@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.samirmaciel.crudsqlite.R;
 import com.samirmaciel.crudsqlite.controller.MainController;
 
@@ -26,7 +27,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private MainController controller;
-    private ImageButton btnAdd;
+    private FloatingActionButton btnAdd;
 
 
     @Override
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 controller.getSaveView();
             }
         });
+
 
         if(savedInstanceState == null){
             getSupportFragmentManager()
