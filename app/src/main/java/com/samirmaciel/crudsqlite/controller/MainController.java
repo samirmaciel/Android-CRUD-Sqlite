@@ -16,10 +16,5 @@ public class MainController {
         this.activity = activity;
     }
 
-    public void getSaveView() {
-        activity.getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.container_main, new SaveFragment())
-                .commit();
-    }
+
 }

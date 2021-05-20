@@ -27,7 +27,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private MainController controller;
-    private FloatingActionButton btnAdd;
 
 
     @Override
@@ -35,14 +34,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         controller = new MainController(this);
-        btnAdd = findViewById(R.id.btnAdd);
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                controller.getSaveView();
-            }
-        });
+
+
 
 
         if(savedInstanceState == null){

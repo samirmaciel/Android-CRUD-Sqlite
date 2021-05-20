@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.samirmaciel.crudsqlite.R;
+import com.samirmaciel.crudsqlite.dao.ContatoDAO;
 import com.samirmaciel.crudsqlite.model.Contato;
 
 import org.w3c.dom.Text;
@@ -23,9 +24,10 @@ public class AdapterContatosRecycler extends RecyclerView.Adapter<AdapterContato
 
     private Context context;
     private List<Contato> contatos;
+    private ContatoDAO contatodao;
 
     public AdapterContatosRecycler(Context context, List<Contato> contatos) {
-
+        this.contatodao = new ContatoDAO(context);
         this.context = context;
         this.contatos = contatos;
     }
@@ -50,6 +52,7 @@ public class AdapterContatosRecycler extends RecyclerView.Adapter<AdapterContato
             @Override
             public void onClick(View v) {
                 contatos.remove(position);
+                contatodao.excluirContato(contatos.get(position));
                 notifyDataSetChanged();
             }
         });

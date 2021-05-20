@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.samirmaciel.crudsqlite.R;
 import com.samirmaciel.crudsqlite.controller.AdapterContatosRecycler;
+import com.samirmaciel.crudsqlite.controller.HomeController;
 import com.samirmaciel.crudsqlite.dao.ContatoDAO;
 import com.samirmaciel.crudsqlite.model.Contato;
 
@@ -23,6 +25,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView recycler;
     private List<Contato> contatos;
     private ContatoDAO contatodao;
+    private HomeController controller;
+    private FloatingActionButton btnAdd;
 
 
     public HomeFragment() {
@@ -34,8 +38,18 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        controller = new HomeController(this, getActivity().getApplicationContext());
         recycler = (RecyclerView) view.findViewById(R.id.recyclerContatos);
         contatodao = new ContatoDAO(getActivity().getApplicationContext());
+        btnAdd = (FloatingActionButton) view.findViewById(R.id.btnAdd);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.getSaveView();
+            }
+        });
+
 
         contatos = contatodao.obterTodos();
 
