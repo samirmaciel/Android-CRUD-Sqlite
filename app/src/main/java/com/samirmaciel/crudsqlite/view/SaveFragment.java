@@ -39,7 +39,7 @@ public class SaveFragment extends Fragment {
         btnVoltar = (Button) view.findViewById(R.id.btnBack);
 
         controller = new SaveController(this, getActivity().getApplicationContext());
-
+        controller.mascaraTelefone(inputTelefone);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

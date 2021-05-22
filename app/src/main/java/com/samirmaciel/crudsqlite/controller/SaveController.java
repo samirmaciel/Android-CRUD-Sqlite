@@ -2,6 +2,9 @@ package com.samirmaciel.crudsqlite.controller;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.samirmaciel.crudsqlite.R;
@@ -34,7 +37,7 @@ public class SaveController {
     private boolean checkCampos(){
         if(!fragment.inputName.getText().toString().isEmpty() && !fragment.inputTelefone.getText().toString().isEmpty()){
             if(fragment.inputName.getText().toString().length() >= 6){
-                if(fragment.inputTelefone.getText().toString().length() == 12){
+                if(fragment.inputTelefone.getText().toString().length() == 13){
                     return true;
                 }else{
                     Toast.makeText(context, "Por favor preencha o número com no minimo 12 digitos!", Toast.LENGTH_SHORT).show();
@@ -60,6 +63,42 @@ public class SaveController {
                 .beginTransaction()
                 .replace(R.id.container_main, new HomeFragment())
                 .commit();
+    }
+
+    public void mascaraTelefone(EditText inputTelefone){
+        inputTelefone.addTextChangedListener(new TextWatcher() {
+            String ultimoCaracter = "";
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                int tamanhInputTelefone = inputTelefone.getText().toString().length();
+                if(tamanhInputTelefone > 1){
+                    ultimoCaracter = inputTelefone.getText().toString().substring(tamanhInputTelefone - 1);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int tamanhoInputTelefone = inputTelefone.getText().toString().length();
+                if (tamanhoInputTelefone == 2){
+                    if (!ultimoCaracter.equals(" ")){
+                        inputTelefone.append(" ");
+                    }else{
+                        inputTelefone.getText().delete(tamanhoInputTelefone - 1, tamanhoInputTelefone - 1);
+                    }
+                } else if (tamanhoInputTelefone == 8){
+                    if (!ultimoCaracter.equals(" ")){
+                        inputTelefone.append(" ");
+                    }else {
+                        inputTelefone.getText().delete(tamanhoInputTelefone - 1, tamanhoInputTelefone - 1);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 

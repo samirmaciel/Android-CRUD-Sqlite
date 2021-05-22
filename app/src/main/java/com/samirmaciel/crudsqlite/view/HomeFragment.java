@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +83,40 @@ public class HomeFragment extends Fragment {
         EditText inputTelefone = (EditText) view.findViewById(R.id.inputNumberEdit);
         Button btnSalvar = (Button) view.findViewById(R.id.btnSaveEdit);
         Button btnFechar = (Button) view.findViewById(R.id.btnFecharEdit);
+
+        inputTelefone.addTextChangedListener(new TextWatcher() {
+            String ultimoCaracter = "";
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                int tamanhInputTelefone = inputTelefone.getText().toString().length();
+                if(tamanhInputTelefone > 1){
+                    ultimoCaracter = inputTelefone.getText().toString().substring(tamanhInputTelefone - 1);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int tamanhoInputTelefone = inputTelefone.getText().toString().length();
+                if (tamanhoInputTelefone == 2){
+                    if (!ultimoCaracter.equals(" ")){
+                        inputTelefone.append(" ");
+                    }else{
+                        inputTelefone.getText().delete(tamanhoInputTelefone - 1, tamanhoInputTelefone - 1);
+                    }
+                } else if (tamanhoInputTelefone == 8){
+                    if (!ultimoCaracter.equals(" ")){
+                        inputTelefone.append(" ");
+                    }else {
+                        inputTelefone.getText().delete(tamanhoInputTelefone - 1, tamanhoInputTelefone - 1);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         inputNome.setText(contato.getNome());
         inputTelefone.setText(contato.getNumero());
