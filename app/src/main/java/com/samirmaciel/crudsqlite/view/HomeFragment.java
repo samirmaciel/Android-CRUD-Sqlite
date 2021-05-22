@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
     private ContatoDAO contatodao;
     private HomeController controller;
     private FloatingActionButton btnAdd;
+    private AdapterContatosRecycler adapter;
 
 
     public HomeFragment() {
@@ -59,7 +60,7 @@ public class HomeFragment extends Fragment {
 
         System.out.println(contatos);
 
-        AdapterContatosRecycler adapter = new AdapterContatosRecycler(this, getActivity().getApplicationContext(), contatos);
+        adapter = new AdapterContatosRecycler(this, getActivity().getApplicationContext(), contatos);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
@@ -83,6 +84,19 @@ public class HomeFragment extends Fragment {
 
         inputNome.setText(contato.getNome());
         inputTelefone.setText(contato.getNumero());
+
+
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contato.setNome(inputNome.getText().toString());
+                contato.setNumero(inputTelefone.getText().toString());
+                controller.salvarContato(contato);
+                dialog.dismiss();
+                adapter.notifyDataSetChanged();
+            }
+        });
 
         btnFechar.setOnClickListener(new View.OnClickListener() {
             @Override

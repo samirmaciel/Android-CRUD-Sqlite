@@ -55,12 +55,12 @@ public class ContatoDAO {
         return null;
     }
 
-    public void atualizarUsuario(Contato contato){
+    public int atualizarUsuario(Contato contato){
         ContentValues values = new ContentValues();
         values.put("id", contato.getId());
         values.put("nome", contato.getNome());
         values.put("numero", contato.getNumero());
 
-        int num = banco.update("contatos", values, "id == ?", new String[]{String.valueOf(contato.getId())});
+        return banco.update("contatos", values, "id == ?", new String[]{String.valueOf(contato.getId())});
     }
 }
