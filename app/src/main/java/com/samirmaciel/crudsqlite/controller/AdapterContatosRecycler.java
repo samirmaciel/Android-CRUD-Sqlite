@@ -18,6 +18,7 @@ import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.samirmaciel.crudsqlite.R;
+import com.samirmaciel.crudsqlite.common.WindowType;
 import com.samirmaciel.crudsqlite.dao.ContatoDAO;
 import com.samirmaciel.crudsqlite.model.Contato;
 import com.samirmaciel.crudsqlite.view.HomeFragment;
@@ -59,8 +60,9 @@ public class AdapterContatosRecycler extends RecyclerView.Adapter<AdapterContato
         holder.btnDeletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contatos.remove(position);
+
                 contatodao.excluirContato(contatos.get(position));
+                contatos.remove(position);
                 notifyDataSetChanged();
             }
         });
@@ -68,7 +70,7 @@ public class AdapterContatosRecycler extends RecyclerView.Adapter<AdapterContato
         holder.btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment.showEditView(contatos.get(position));
+                fragment.showInputView(contatos.get(position), WindowType.EDITAR);
             }
         });
 
