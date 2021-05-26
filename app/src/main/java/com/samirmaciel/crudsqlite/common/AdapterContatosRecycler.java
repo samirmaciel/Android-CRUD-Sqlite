@@ -1,29 +1,23 @@
-package com.samirmaciel.crudsqlite.controller;
+package com.samirmaciel.crudsqlite.common;
 
 import android.app.Activity;
-import android.app.Dialog;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.ButtonBarLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.samirmaciel.crudsqlite.R;
-import com.samirmaciel.crudsqlite.common.WindowType;
 import com.samirmaciel.crudsqlite.dao.ContatoDAO;
 import com.samirmaciel.crudsqlite.model.Contato;
 import com.samirmaciel.crudsqlite.view.HomeFragment;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -33,12 +27,14 @@ public class AdapterContatosRecycler extends RecyclerView.Adapter<AdapterContato
     private List<Contato> contatos;
     private ContatoDAO contatodao;
     private HomeFragment fragment;
+    private Activity activity;
 
-    public AdapterContatosRecycler(HomeFragment fragment, Context context, List<Contato> contatos) {
+    public AdapterContatosRecycler(HomeFragment fragment, Context context, List<Contato> contatos, Activity activity) {
         this.contatodao = new ContatoDAO(context);
         this.fragment = fragment;
         this.context = context;
         this.contatos = contatos;
+        this.activity = activity;
     }
 
     @NonNull
@@ -60,10 +56,22 @@ public class AdapterContatosRecycler extends RecyclerView.Adapter<AdapterContato
         holder.btnDeletar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                alert.setTitle("Atenção")
+                        .setMessage("Deseja excluir o contato?")
+                        .setNegativeButton("Não", null)
+                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                contatodao.excluirContato(contatos.get(position));
+                                contatos.remove(contatos.get(position));
+                                notifyDataSetChanged();
+                            }
+                        }).create();
 
-                contatodao.excluirContato(contatos.get(position));
-                contatos.remove(position);
-                notifyDataSetChanged();
+                alert.show();
+
+
             }
         });
 

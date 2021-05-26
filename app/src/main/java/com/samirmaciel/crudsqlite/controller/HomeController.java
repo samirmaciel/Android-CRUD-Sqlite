@@ -5,7 +5,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.samirmaciel.crudsqlite.R;
+import com.samirmaciel.crudsqlite.common.AdapterContatosRecycler;
 import com.samirmaciel.crudsqlite.dao.ContatoDAO;
 import com.samirmaciel.crudsqlite.model.Contato;
 import com.samirmaciel.crudsqlite.view.HomeFragment;

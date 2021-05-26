@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.samirmaciel.crudsqlite.R;
 import com.samirmaciel.crudsqlite.common.WindowType;
-import com.samirmaciel.crudsqlite.controller.AdapterContatosRecycler;
+import com.samirmaciel.crudsqlite.common.AdapterContatosRecycler;
 import com.samirmaciel.crudsqlite.controller.HomeController;
 import com.samirmaciel.crudsqlite.dao.ContatoDAO;
 import com.samirmaciel.crudsqlite.model.Contato;
@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
 
         contatos = contatodao.obterTodos();
 
-        adapter = new AdapterContatosRecycler(this, getActivity().getApplicationContext(), contatos);
+        adapter = new AdapterContatosRecycler(this, getActivity().getApplicationContext(), contatos, getActivity());
         controller = new HomeController(this, getActivity().getApplicationContext());
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
