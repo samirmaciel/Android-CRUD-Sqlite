@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="260dp"
+        android:layout_height="280dp"
         android:layout_margin="10dp"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="15dp"
@@ -27,7 +27,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="16dp"
                 android:text="EDITAR CONTATO"
                 android:textSize="14sp"
                 android:textStyle="bold"

@@ -68,10 +68,7 @@ public class AdapterContatosRecycler extends RecyclerView.Adapter<AdapterContato
                                 notifyDataSetChanged();
                             }
                         }).create();
-
                 alert.show();
-
-
             }
         });
 
